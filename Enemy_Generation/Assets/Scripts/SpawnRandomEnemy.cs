@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class SpawnRandomEnemy : MonoBehaviour
 {
     [SerializeField] private GameObject _enemy;
     [SerializeField] private Transform _positionSpavn;
@@ -24,17 +24,19 @@ public class Enemy : MonoBehaviour
         int minNumberPosition = 1;
         int maxNumberPosition = _positionSpavns.Length;
 
-        while (_numberEnemy > _countEnemy)
+        var _waitForSeconds = new WaitForSeconds(_timeBetweenAppearance);
+
+        for (int i = 0; i < _numberEnemy; i++)
         {
-            Transform target = _positionSpavns[Random.Range(minNumberPosition,maxNumberPosition)];
+            Transform target = _positionSpavns[Random.Range(minNumberPosition, maxNumberPosition)];
 
             Instantiate(_enemy, target.position, Quaternion.identity);
-
-            yield return new WaitForSeconds(_timeBetweenAppearance);
-            _countEnemy++;
-
             Debug.Log(Time.deltaTime);
+
+            yield return _waitForSeconds;
         }
+
+        _countEnemy++;
     }
 
     private void GetPositions()
