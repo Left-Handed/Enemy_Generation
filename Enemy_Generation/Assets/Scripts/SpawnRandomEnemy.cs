@@ -27,7 +27,6 @@ public class SpawnRandomEnemy : MonoBehaviour
         int minNumberPosition = 1;
         int maxNumberPosition = _positionSpavns.Length;
 
-
         for (int i = 0; i < _numberEnemy; i++)
         {
             Transform target = _positionSpavns[Random.Range(minNumberPosition, maxNumberPosition)];
