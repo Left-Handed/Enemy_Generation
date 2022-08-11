@@ -9,12 +9,15 @@ public class SpawnRandomEnemy : MonoBehaviour
     [SerializeField] private float _timeBetweenAppearance = 2f;
     [SerializeField] private int _numberEnemy = 5;
 
+    private WaitForSeconds _waitForSeconds;
     private Transform[] _positionSpavns;
     private int _countEnemy = 0;
 
 
     private void Start()
     {
+        _waitForSeconds = new WaitForSeconds(_timeBetweenAppearance);
+
         GetPositions();
         StartCoroutine(EnemyDrop());
     }
@@ -24,7 +27,6 @@ public class SpawnRandomEnemy : MonoBehaviour
         int minNumberPosition = 1;
         int maxNumberPosition = _positionSpavns.Length;
 
-        var _waitForSeconds = new WaitForSeconds(_timeBetweenAppearance);
 
         for (int i = 0; i < _numberEnemy; i++)
         {
