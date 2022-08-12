@@ -2,21 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnRandomEnemy : MonoBehaviour
+public class EmergenceRandomEnemy : MonoBehaviour
 {
     
     [SerializeField] private Transform _positionSpavn;
-    [SerializeField] private float _timeBetweenAppearance = 2f;
-    [SerializeField] private int _numberEnemy = 5;
+    [SerializeField] private float _delay = 2f;
+    [SerializeField] private int _amount = 5;
     [SerializeField] private Enemy _enemy;
 
     private Transform[] _positionSpavns;
 
-
     private void Start()
     {
-
-        GetPositions();
+        SeparatePositions();
         StartCoroutine(EnemyDrop());
     }
 
@@ -24,9 +22,9 @@ public class SpawnRandomEnemy : MonoBehaviour
     {
         int minNumberPosition = 1;
         int maxNumberPosition = _positionSpavns.Length;
-        WaitForSeconds waitForSeconds = new WaitForSeconds(_timeBetweenAppearance);
+        WaitForSeconds waitForSeconds = new WaitForSeconds(_delay);
 
-        for (int i = 0; i < _numberEnemy; i++)
+        for (int i = 0; i < _amount; i++)
         {
             Transform target = _positionSpavns[Random.Range(minNumberPosition, maxNumberPosition)];
 
@@ -37,7 +35,7 @@ public class SpawnRandomEnemy : MonoBehaviour
         }
     }
 
-    private void GetPositions()
+    private void SeparatePositions()
     {
         _positionSpavns = new Transform[_positionSpavn.childCount];
 
@@ -46,5 +44,4 @@ public class SpawnRandomEnemy : MonoBehaviour
             _positionSpavns[i] = _positionSpavn.GetChild(i);
         }
     }
-
 }
