@@ -631,10 +631,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5822466bd7bdc84394c617cc854c335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 7169142886911700836, guid: 2da23421388dc804ba8b3207e41cf736, type: 3}
   _positionSpavn: {fileID: 945483144}
   _timeBetweenAppearance: 2
   _numberEnemy: 5
+  _enemy: {fileID: 5129704035238299480, guid: 2da23421388dc804ba8b3207e41cf736, type: 3}
 --- !u!4 &988647788
 Transform:
   m_ObjectHideFlags: 0

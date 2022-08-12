@@ -8,17 +8,13 @@ public class SpawnRandomEnemy : MonoBehaviour
     [SerializeField] private Transform _positionSpavn;
     [SerializeField] private float _timeBetweenAppearance = 2f;
     [SerializeField] private int _numberEnemy = 5;
+    [SerializeField] private Enemy _enemy;
 
-    private WaitForSeconds _waitForSeconds;
     private Transform[] _positionSpavns;
-    private GameObject _enemy;
-    private int _countEnemy = 0;
 
 
     private void Start()
     {
-        _enemy = Instantiate(Resources.Load("Enemy_Dexeased", typeof(GameObject))) as GameObject;
-        _waitForSeconds = new WaitForSeconds(_timeBetweenAppearance);
 
         GetPositions();
         StartCoroutine(EnemyDrop());
@@ -28,7 +24,7 @@ public class SpawnRandomEnemy : MonoBehaviour
     {
         int minNumberPosition = 1;
         int maxNumberPosition = _positionSpavns.Length;
-
+        WaitForSeconds waitForSeconds = new WaitForSeconds(_timeBetweenAppearance);
 
         for (int i = 0; i < _numberEnemy; i++)
         {
@@ -37,10 +33,8 @@ public class SpawnRandomEnemy : MonoBehaviour
             Instantiate(_enemy, target.position, Quaternion.identity);
             Debug.Log(Time.deltaTime);
 
-            yield return _waitForSeconds;
+            yield return waitForSeconds;
         }
-
-        _countEnemy++;
     }
 
     private void GetPositions()
